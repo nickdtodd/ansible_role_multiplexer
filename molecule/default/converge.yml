@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include nickdtodd.ansible_role_multiplexer"
+      include_role:
+        name: "nickdtodd.ansible_role_multiplexer"

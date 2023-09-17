@@ -1,0 +1,3 @@
+---
+nt_multiplexer_name: tmux
+nt_multiplexer_config_path: ~/.tmux.conf

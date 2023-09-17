@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ubuntu
+    image: nickdtodd/ansible-user-image:1.0
+    pre_build_image: true
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      become_user: nick
+  inventory:
+    host_vars:
+      ubuntu:
+        ansible_user: nick
+        nt_multiplexer_name: tmux
+        nt_multiplexer_config_path: ~/.tmux.conf
+verifier:
+  name: ansible
+  options:
+    gather_facts: true
+    sudo: true

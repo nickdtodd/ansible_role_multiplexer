@@ -1,0 +1,15 @@
+---
+# otasks file for ansible_role_multiplexer
+- name: Install multiplexer
+  ansible.builtin.package:
+    name: "{{ nt_multiplexer_name }}"
+    state: latest
+  become: true
+
+- name: Add config file
+  ansible.builtin.copy:
+    src: "{{nt_multiplexer_name}}.conf"
+    dest: "{{nt_multiplexer_config_path}}"
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+  become_user: "{{ansible_user}}"

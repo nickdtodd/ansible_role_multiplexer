@@ -1,0 +1,24 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Assert multiplexer has been installed
+      ansible.builtin.apt:
+        name: "{{ nt_multiplexer_name }}"
+        state: present
+      become: True
+
+    - name: Stat config file
+      ansible.builtin.stat:
+        path: "{{ nt_multiplexer_config_path }}"
+      register: config
+
+    - name: Assert config file exists
+      ansible.builtin.assert:
+        that:
+          - config.stat.exists == True
+          - config.stat.pw_name == ansible_user
+          - config.stat.gr_name == ansible_user
