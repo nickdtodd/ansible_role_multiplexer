@@ -5,6 +5,12 @@
   hosts: all
   gather_facts: false
   tasks:
+
+    - name: Include role
+      ansible.builtin.include_role:
+        name: ansible_role_multiplexer
+        public: True
+
     - name: Assert multiplexer has been installed
       ansible.builtin.apt:
         name: "{{ nt_multiplexer_name }}"
